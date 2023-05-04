@@ -33,15 +33,4 @@ public class UserServiceImp implements UserService {
       return userDao.findUserByModelSeriesCar(model, series);
    }
 
-   @Transactional
-   @Override
-   public void deleteTable() {
-      userDao.deleteTable();
-   }
-
-   @Transactional
-   @Override
-   public void delete() {
-      userDao.delete();
-   }
 }

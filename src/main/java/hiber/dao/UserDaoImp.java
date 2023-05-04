@@ -34,29 +34,13 @@ public class UserDaoImp implements UserDao {
    @Override
    public List<User> findUserByModelSeriesCar(String model, int series) {
       Session session = sessionFactory.getCurrentSession();
-      List<Car> cars = session
-              .createQuery("FROM Car WHERE model = :model and series = :series")
+      List<User> users = session
+              .createQuery("FROM User WHERE car.model = :model and car.series = :series")
               .setParameter("model", model)
               .setParameter("series", series)
               .getResultList();
-      List<User> users = new ArrayList<>();
-      for (Car car: cars ) {
-         users.add(car.getUser());
-      }
       return users;
    }
 
-   @Override
-   public void deleteTable() {
-      Session session = sessionFactory.getCurrentSession();
-      session.createQuery("DELETE FROM Car").executeUpdate();
-   }
-
-   @Override
-   public void delete() {
-      Session session = sessionFactory.getCurrentSession();
-      Car car = session.get(Car.class, (long) 18);
-      session.delete(car);
-   }
 
 }
